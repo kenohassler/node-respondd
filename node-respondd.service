@@ -3,6 +3,8 @@ Description=The node-respondd server provides data about this node to the local 
 
 [Service]
 Type=simple
+User=respondd
+AmbientCapabilities=CAP_NET_BIND_SERVICE
 WorkingDirectory=/opt/node-respondd
 ExecStart=/opt/node-respondd/respondd
 

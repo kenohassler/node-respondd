@@ -10,17 +10,18 @@ A respondd server written in node.js.
 2. On `systemd` based systems, copy `node-respondd.service` to `/etc/systemd/system/respondd.service`
    and run `systemctl enable node-respondd`.
    On systems without `systemd`, check how to install services.
-3. Configure sudo.
+3. Create unprivileged system user for respondd (`adduser --system respondd`).
+4. Configure sudo.
 
 ### sudo configuration
 
 *node-respondd* requires *sudo* to be set up and configured, such that `bat-list-neighbours` can be 
 executed with root privileges by `respondd`. If you use the `respondd.service` for *systemd*, this would
-be for user `nobody`.
+be for user `respondd`.
 
 A possible way to extend suoders file accordingly would be:
 
-    nobody ALL=(root) NOPASSWD: /opt/node-respondd/bat-list-neighbours
+    respondd ALL=(root) NOPASSWD: /opt/node-respondd/bat-list-neighbours
 
 ## Configuration
 

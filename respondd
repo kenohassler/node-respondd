@@ -232,7 +232,9 @@ socket.on('listening', () => {
 
 socket.bind(getConfig("port"), () => {
   socket.addMembership(getConfig("mcast_group"), getConfig("listen"))
-  myproc.setgid('nogroup')
-  myproc.setuid('nobody')
+  if (myproc.getgid() == 0 || myproc.getuid() == 0) {
+    myproc.setgid('nogroup')
+    myproc.setuid('respondd')
+  }
 })
 
